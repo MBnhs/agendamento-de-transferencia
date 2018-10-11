@@ -1,4 +1,4 @@
-package br.com.marcelo.agendamentotransferencia.model;
+package br.com.marcelo.agendamentotransferencia.model.transferencia;
 
 import static org.junit.Assert.fail;
 
@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.junit.Test;
+
+import br.com.marcelo.agendamentotransferencia.model.transferencia.Transferencia;
 
 public class TransfereciaTest {
 

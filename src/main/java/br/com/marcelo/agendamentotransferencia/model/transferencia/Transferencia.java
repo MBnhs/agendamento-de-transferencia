@@ -1,8 +1,10 @@
-package br.com.marcelo.agendamentotransferencia.model;
+package br.com.marcelo.agendamentotransferencia.model.transferencia;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
+
+import br.com.marcelo.agendamentotransferencia.model.taxa.TipoDeTaxa;
 
 public class Transferencia {
 
