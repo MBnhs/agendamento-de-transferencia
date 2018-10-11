@@ -42,7 +42,7 @@ public class TransfereciaTest {
 	}
 
 	@Test
-	public void acimaDe40DiasDaDataDeAgendamentoEComValorSuperiorA100DeveTerUmaTaxaDe8PorcentoSobreOValorTransferido() {
+	public void acimaDe40DiasDaDataDeAgendamentoEComValorSuperiorA100DeveTerUmaTaxaDe2PorcentoSobreOValorTransferido() {
 		fail("Not yet implemented");
 	}
 

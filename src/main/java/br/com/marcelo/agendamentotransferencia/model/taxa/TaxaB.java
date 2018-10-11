@@ -8,7 +8,9 @@ public class TaxaB implements CalculoDeTaxa {
 
 	@Override
 	public BigDecimal getTaxaDe(Transferencia transferencia) {
-		return null;
+		long dias = transferencia.getDiasEntreTransferenciaEAgendamento();
+		BigDecimal taxa = new BigDecimal("12.00").multiply(new BigDecimal(dias));
+		return taxa;
 	}
 
 }
