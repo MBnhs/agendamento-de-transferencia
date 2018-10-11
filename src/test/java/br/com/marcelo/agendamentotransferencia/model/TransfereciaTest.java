@@ -1,19 +1,21 @@
-package br.com.marcelo.agendamentotransferencia.modelo;
+package br.com.marcelo.agendamentotransferencia.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
-import org.junit.Before;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import org.junit.Test;
 
 public class TransfereciaTest {
 
-	@Before
-	public void antes() {
-
-	}
+	private Transferencia transferencia;
 
 	@Test
 	public void noMesmoDiaDoAgendamentoDeveTerUmaTaxaDe3ReaisMais3PorcentoDoValorASerTransferido() {
+		transferencia = new Transferencia("1234", "4567", new BigDecimal("1000"), LocalDate.now());
+
+		System.out.println(transferencia.getContaDestino());
 		fail("Not yet implemented");
 	}
 
