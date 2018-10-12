@@ -2,6 +2,7 @@ package br.com.marcelo.agendamentotransferencia.model.taxa;
 
 import java.math.BigDecimal;
 
+import br.com.marcelo.agendamentotransferencia.exception.CalculoDeTaxaException;
 import br.com.marcelo.agendamentotransferencia.model.transferencia.Transferencia;
 
 public class TaxaC implements CalculoDeTaxa {
@@ -19,7 +20,7 @@ public class TaxaC implements CalculoDeTaxa {
 		} else if (dias > 40 && transferencia.getValor().compareTo(new BigDecimal("100.00")) == 1) {
 			return transferencia.getValor().multiply(new BigDecimal(".02"));
 		} else {
-			return null;
+			throw new CalculoDeTaxaException("Não foi encontrada uma taxa aplicável para a transferência.");
 		}
 	}
 

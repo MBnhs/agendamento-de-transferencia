@@ -1,7 +1,6 @@
 package br.com.marcelo.agendamentotransferencia.model.taxa;
 
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -12,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import br.com.marcelo.agendamentotransferencia.exception.CalculoDeTaxaException;
 import br.com.marcelo.agendamentotransferencia.model.transferencia.Transferencia;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -58,9 +58,12 @@ public class TaxaCTest {
 
 	}
 
-	@Test
+	@Test(expected=CalculoDeTaxaException.class)
 	public void acimaDe40DiasDaDataDeAgendamentoEComValorInferiorA100DeveLancarAlertoSobreErro() {
-		fail("Not yet implemented");
+		when(transferencia.getValor()).thenReturn(new BigDecimal("99.00"));
+		when(transferencia.getDiasEntreTransferenciaEAgendamento()).thenReturn(41L);
+
+		new TaxaC().getTaxaDe(transferencia);
 	}
 
 }

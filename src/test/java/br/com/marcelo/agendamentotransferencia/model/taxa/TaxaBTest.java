@@ -21,11 +21,10 @@ public class TaxaBTest {
 
 	@Test
 	public void devePossuirUmaTaxaDe12ReaisMultiplicadoPelaQuantidadeDeDias() {
-		when(transferencia.getValor()).thenReturn(new BigDecimal("10.00"));
-		when(transferencia.getDiasEntreTransferenciaEAgendamento()).thenReturn(10L);
+		when(transferencia.getDiasEntreTransferenciaEAgendamento()).thenReturn(5L);
 		
 		BigDecimal taxaDe = new TaxaB().getTaxaDe(transferencia);
-		assertThat(new BigDecimal("120.00"), Matchers.comparesEqualTo(taxaDe));
+		assertThat(new BigDecimal("60.00"), Matchers.comparesEqualTo(taxaDe));
 	}
 
 }
