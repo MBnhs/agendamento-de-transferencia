@@ -37,6 +37,7 @@ public class Transferencia {
 			tipoDeTaxa = TipoDeTaxa.TIPO_C;
 		}
 
+		taxa = tipoDeTaxa.getTaxaDe(this);
 
 	}
 
