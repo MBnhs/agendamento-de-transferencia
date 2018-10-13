@@ -15,7 +15,6 @@ http://localhost:8080/transferenciasRealizadas -> Lista todas as transferências
 http://localhost:8080/novaTransferencia -> Cadastra uma nova transferência
 
 ### Frameworks utilizados
-
 Spring Boot Web: utilizado para criação do projeto web.
 Spring MVC: utilizado para mapeamentos e lógicas do projeto web.
 Spring Data JPA: utilizado para persitência de dados.
