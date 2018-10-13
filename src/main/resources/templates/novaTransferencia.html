@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<title>Nova transferência</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 
-<form action="cadastraTransferencia" method="post">
-	<label for="contaOrigem">Conta origem</label>
-	<input type="text" id="contaOrigem" name="contaOrigem" placeholder="Conta Origem"/>
+	<nav class="navbar navbar-light bg-light">
+		<a class="nav-link" href="transferenciasRealizadas">Transferências realizadas</a>
+	</nav>
 
-	<label for="contaDestino">Conta destino</label>
-	<input type="text" id="contaDestino" name="contaDestino" placeholder="Conta Origem"/>
-	
-	<label for="valor">Valor</label>
-	<input type="number" id="valor" name="valor" placeholder="Valor"/>
-	
-	<label for="dataDeAgendamento">Data de agendamento</label>
-	<input type="date" id="dataDeAgendamento" name="dataDeAgendamento" th:type="date" placeholder="dataDeAgendamento"/>
-	
-	<input type="submit"/>
-</form>
+	<div class="container-fluid">
 
+
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-3">Nova transferência</h1>
+				<p class="lead">Preencha os dados abaixo para realizar uma nova
+					transferência:</p>
+			</div>
+		</div>
+
+		<form action="cadastraTransferencia" method="post">
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="contaOrigem">Conta origem</label> <input type="text"
+							class="form-control" id="contaOrigem" name="contaOrigem"
+							placeholder="Conta Origem" maxlength="6"/>
+					</div>
+					<div class="col">
+						<label for="contaDestino">Conta destino</label> <input type="text"
+							class="form-control" id="contaDestino" name="contaDestino"
+							placeholder="Conta Origem" maxlength="6"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="valor">Valor</label> <input type="number" step=".01"
+							class="form-control" id="valor" name="valor" placeholder="Valor" />
+					</div>
+
+					<div class="col">
+						<label for="dataDeAgendamento">Data de agendamento</label> <input
+							type="date" class="form-control" id="dataDeAgendamento"
+							name="dataDeAgendamento" th:type="date"
+							placeholder="dataDeAgendamento" />
+					</div>
+				</div>
+			</div>
+
+			<input class="btn btn-primary" type="submit" value="Transferir" />
+
+		</form>
+	</div>
 </body>
 </html>

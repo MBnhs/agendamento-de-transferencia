@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<title>Transferências realizadas</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+	<nav class="navbar navbar-light bg-light">
+		<a class="nav-link" href="novaTransferencia">Realizar nova
+			transferência</a>
+	</nav>
 
-<a href="novaTransferencia">Realizar nova transferência</a>
-<br/>
-<br/>
-<table>
-	<tr><th>Conta origem</th>
-		<th>Conta destino</th>
-		<th>Data da transferência</th>
-		<th>Data de agendamento</th>
-		<th>Valor da transferência</th>
-		<th>Valor da Taxa</th>
-		<th>Tipo de taxa</th></tr>
-	<tr th:each="transferencia : ${transferencias}">
-		<td><span th:text="${transferencia.contaOrigem.numero}"></span></td>
-		<td><span th:text="${transferencia.contaDestino.numero}"></span></td>
-		<td><span th:text="${transferencia.dataDaTransferencia}"></span></td>
-		<td><span th:text="${transferencia.dataDeAgendamento}"></span></td>
-		<td><span th:text="${transferencia.valor}"></span></td>
-		<td><span th:text="${transferencia.taxa}"></span></td>
-		<td><span th:text="${transferencia.tipoDeTaxa}"></span></td>
-	
-	</tr>
+	<div class="container-fluid">
 
-</table>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-3">Transferências realizadas</h1>
+				<p class="lead">Segue abaixo as transferências realizadas nessa
+					build:</p>
+			</div>
+		</div>
 
+		<div th:if="${!transferencias.empty}">
+			<table
+				class="table table-dark table-striped table-bordered table-hover">
+				<tr>
+					<th>Conta origem</th>
+					<th>Conta destino</th>
+					<th>Data da transferência</th>
+					<th>Data de agendamento</th>
+					<th>Valor da transferência</th>
+					<th>Valor da Taxa</th>
+					<th>Tipo de taxa</th>
+				</tr>
+				<tr th:each="transferencia : ${transferencias}">
+					<td><span th:text="${transferencia.contaOrigem.numero}"></span></td>
+					<td><span th:text="${transferencia.contaDestino.numero}"></span></td>
+					<td><span th:text="${#temporals.format(transferencia.dataDaTransferencia, 'dd/MM/yyyy')}"></span></td>
+					<td><span th:text="${#temporals.format(transferencia.dataDeAgendamento, 'dd/MM/yyyy')}"></span></td>
+					<td><span th:text="${transferencia.valor}"></span></td>
+					<td><span th:text="${transferencia.taxa}"></span></td>
+					<td><span th:text="${transferencia.tipoDeTaxa}"></span></td>
+
+				</tr>
+
+			</table>
+		</div>
+	</div>
 
 </body>
 </html>

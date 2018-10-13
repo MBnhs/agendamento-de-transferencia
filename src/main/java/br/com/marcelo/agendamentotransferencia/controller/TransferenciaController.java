@@ -20,7 +20,7 @@ public class TransferenciaController {
 	@Autowired
 	TransferenciaRepository dao;
 
-	@RequestMapping("/")
+	@RequestMapping("/transferenciasRealizadas")
 	public String mostraTransferencias(Model model) {
 		Iterable<Transferencia> transferencias = dao.findAll();
 		model.addAttribute("transferencias", transferencias);
@@ -41,7 +41,7 @@ public class TransferenciaController {
 		
 		dao.save(transferenciaFormulario.getTransferencia());
 
-		return "redirect:/";
+		return "redirect:/transferenciasRealizadas";
 	}
 
 }
