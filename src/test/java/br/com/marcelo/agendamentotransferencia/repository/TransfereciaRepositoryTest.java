@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.marcelo.agendamentotransferencia.AgendamentoDeTransferenciaApplication;
 import br.com.marcelo.agendamentotransferencia.PerfilDeTesteH2Config;
+import br.com.marcelo.agendamentotransferencia.model.conta.Conta;
 import br.com.marcelo.agendamentotransferencia.model.transferencia.Transferencia;
 
 @RunWith(SpringRunner.class)
@@ -29,12 +30,12 @@ public class TransfereciaRepositoryTest {
 
 	@Test
 	public void deveGravarUmRegistroDeTransferenciaNaBaseDeDados() {
-		Transferencia transferencia = new Transferencia("1234", "4567", new BigDecimal("1000"), LocalDate.now());
+		Transferencia transferencia = new Transferencia(new Conta("1234"), new Conta("4567"), new BigDecimal("1000"), LocalDate.now());
 		dao.save(transferencia);
 		Transferencia transferenciaEncontrada = dao.findById(transferencia.getId()).get();
 		assertEquals(transferencia.getId(), transferenciaEncontrada.getId());
-		assertEquals(transferencia.getContaOrigem(), transferenciaEncontrada.getContaOrigem());
-		assertEquals(transferencia.getContaDestino(), transferenciaEncontrada.getContaDestino());
+		assertEquals(transferencia.getContaOrigem().getNumero(), transferenciaEncontrada.getContaOrigem().getNumero());
+		assertEquals(transferencia.getContaDestino().getNumero(), transferenciaEncontrada.getContaDestino().getNumero());
 		assertEquals(transferencia.getDataDaTransferencia(), transferenciaEncontrada.getDataDaTransferencia());
 		assertEquals(transferencia.getDataDeAgendamento(), transferenciaEncontrada.getDataDeAgendamento());
 		assertThat(transferencia.getValor(), Matchers.comparesEqualTo(transferenciaEncontrada.getValor()));

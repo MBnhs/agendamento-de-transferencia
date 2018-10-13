@@ -18,8 +18,8 @@
 		<th>Valor da Taxa</th>
 		<th>Tipo de taxa</th></tr>
 	<tr th:each="transferencia : ${transferencias}">
-		<td><span th:text="${transferencia.contaOrigem}"></span></td>
-		<td><span th:text="${transferencia.contaDestino}"></span></td>
+		<td><span th:text="${transferencia.contaOrigem.numero}"></span></td>
+		<td><span th:text="${transferencia.contaDestino.numero}"></span></td>
 		<td><span th:text="${transferencia.dataDaTransferencia}"></span></td>
 		<td><span th:text="${transferencia.dataDeAgendamento}"></span></td>
 		<td><span th:text="${transferencia.valor}"></span></td>

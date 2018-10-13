@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+import br.com.marcelo.agendamentotransferencia.model.conta.Conta;
 import br.com.marcelo.agendamentotransferencia.model.taxa.TipoDeTaxa;
 
 @Entity
@@ -17,8 +20,12 @@ public class Transferencia {
 	@GeneratedValue
 	private Long id;
 
-	private String contaOrigem;
-	private String contaDestino;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Conta contaOrigem;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Conta contaDestino;
+
 	private BigDecimal valor;
 	private TipoDeTaxa tipoDeTaxa;
 	private BigDecimal taxa;
@@ -32,7 +39,7 @@ public class Transferencia {
 	private Transferencia() {
 	}
 
-	public Transferencia(String contaOrigem, String contaDestino, BigDecimal valor, LocalDate dataDeAgendamento) {
+	public Transferencia(Conta contaOrigem, Conta contaDestino, BigDecimal valor, LocalDate dataDeAgendamento) {
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
@@ -61,11 +68,11 @@ public class Transferencia {
 		return id;
 	}
 
-	public String getContaOrigem() {
+	public Conta getContaOrigem() {
 		return contaOrigem;
 	}
 
-	public String getContaDestino() {
+	public Conta getContaDestino() {
 		return contaDestino;
 	}
 
@@ -96,9 +103,9 @@ public class Transferencia {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(contaOrigem);
+		sb.append(contaOrigem.getNumero());
 		sb.append("\t");
-		sb.append(contaDestino);
+		sb.append(contaDestino.getNumero());
 		sb.append("\t");
 		sb.append(dataDaTransferencia);
 		sb.append("\t");
@@ -111,70 +118,6 @@ public class Transferencia {
 		sb.append(tipoDeTaxa);
 
 		return sb.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((contaDestino == null) ? 0 : contaDestino.hashCode());
-		result = prime * result + ((contaOrigem == null) ? 0 : contaOrigem.hashCode());
-		result = prime * result + ((dataDaTransferencia == null) ? 0 : dataDaTransferencia.hashCode());
-		result = prime * result + ((dataDeAgendamento == null) ? 0 : dataDeAgendamento.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((taxa == null) ? 0 : taxa.hashCode());
-		result = prime * result + ((tipoDeTaxa == null) ? 0 : tipoDeTaxa.hashCode());
-		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Transferencia other = (Transferencia) obj;
-		if (contaDestino == null) {
-			if (other.contaDestino != null)
-				return false;
-		} else if (!contaDestino.equals(other.contaDestino))
-			return false;
-		if (contaOrigem == null) {
-			if (other.contaOrigem != null)
-				return false;
-		} else if (!contaOrigem.equals(other.contaOrigem))
-			return false;
-		if (dataDaTransferencia == null) {
-			if (other.dataDaTransferencia != null)
-				return false;
-		} else if (!dataDaTransferencia.equals(other.dataDaTransferencia))
-			return false;
-		if (dataDeAgendamento == null) {
-			if (other.dataDeAgendamento != null)
-				return false;
-		} else if (!dataDeAgendamento.equals(other.dataDeAgendamento))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (taxa == null) {
-			if (other.taxa != null)
-				return false;
-		} else if (!taxa.equals(other.taxa))
-			return false;
-		if (tipoDeTaxa != other.tipoDeTaxa)
-			return false;
-		if (valor == null) {
-			if (other.valor != null)
-				return false;
-		} else if (!valor.equals(other.valor))
-			return false;
-		return true;
 	}
 
 }
