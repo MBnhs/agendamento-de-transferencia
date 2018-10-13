@@ -16,13 +16,21 @@ http://localhost:8080/novaTransferencia -> Cadastra uma nova transferência
 
 ### Frameworks utilizados
 Spring Boot Web: utilizado para criação do projeto web.
+
 Spring MVC: utilizado para mapeamentos e lógicas do projeto web.
+
 Spring Data JPA: utilizado para persitência de dados.
+
 H2 Database: utilizado como banco de dados em memória.
+
 Thymeleaf: engine para páginas HTML.
+
 Maven: para gerenciamento de dependências e build.
+
 jUnit: para execução de testes automatizados.
+
 Bootstrap: utilizado para estilização das páginas HTML.
+
 
 ### Patterns
 Utilização do padrão Strategy para contemplar as diferentes estratégias de cálculo de taxas aplicadas às transferências bancárias.
