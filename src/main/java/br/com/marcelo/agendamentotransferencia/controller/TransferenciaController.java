@@ -1,16 +1,16 @@
 package br.com.marcelo.agendamentotransferencia.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.marcelo.agendamentotransferencia.formulario.TransferenciaFormulario;
 import br.com.marcelo.agendamentotransferencia.model.transferencia.Transferencia;
 import br.com.marcelo.agendamentotransferencia.repository.TransferenciaRepository;
 
@@ -33,11 +33,13 @@ public class TransferenciaController {
 	}
 
 	@RequestMapping(value = "/cadastraTransferencia", method = RequestMethod.POST)
-	public String cadastraTransferencia(@RequestParam String contaOrigem, @RequestParam String contaDestino,
-			@RequestParam BigDecimal valor,
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataDeAgendamento) {
+	public String cadastraTransferencia(@ModelAttribute @Valid TransferenciaFormulario transferenciaFormulario, BindingResult result) {
 
-		dao.save(new Transferencia(contaOrigem, contaDestino, valor, dataDeAgendamento));
+		if (result.hasErrors()) {
+			return "redirect:/novaTransferencia";
+		}
+		
+		dao.save(transferenciaFormulario.getTransferencia());
 
 		return "redirect:/";
 	}
